@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),  # sirf apni app ke urls include karni hain
+    path('api/locations/', include('locations.urls')),
+    path('api/', include('bookings.urls')), 
 ]

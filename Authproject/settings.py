@@ -42,9 +42,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_registration',
+    'rest_framework.authtoken',
 
     # your app
     'accounts',
+    'locations',
+    'bookings',
 ]
 
 
@@ -139,16 +142,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 REST_REGISTRATION = {
     'REGISTER_VERIFICATION_ENABLED': False,
     'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
-    'RESET_PASSWORD_VERIFICATION_ENABLED': False,
+    'RESET_PASSWORD_VERIFICATION_ENABLED': True,
     'RESET_PASSWORD_VERIFICATION_URL': 'http://localhost:3000/reset-password/',
     'VERIFICATION_FROM_EMAIL': 'noreply@example.com',
     'USER_LOOKUP_FIELD': 'email',
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # simplejwt optional config (acha hota hay expiry control k liye)
 from datetime import timedelta
@@ -162,3 +167,6 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
